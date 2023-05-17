@@ -11,10 +11,6 @@ const ProductItem = ({ data }) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
   };
 
-  const handleCart = (item) => {
-    console.log("hii this is", item);
-  };
-
   return (
     <ProductWrapper>
       <div className="image">
@@ -25,9 +21,10 @@ const ProductItem = ({ data }) => {
         <Price price={data?.price} />
         <RatingComponent rating={data?.rating.rate} />
         <Paragraph f=".8rem">
-          {DescriptionCut(`${data?.description}`, 150)}
+          {DescriptionCut(`${data?.description}`, 80)}
         </Paragraph>
-        <Button as={NavLink} to="/" onClick={() => handleCart(data)}>
+
+        <Button as={NavLink}>
           <AiOutlineShoppingCart />
           Add To Card
         </Button>

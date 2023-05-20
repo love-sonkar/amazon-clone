@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -11,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/amazon-clone" element={<Home />} />
         <Route path="/amazon-clone/cart" element={<Cart />} />
+        <Route path="*" element={<Navigate to="/amazon-clone/" />} />
       </Routes>
       <Footer />
     </div>

@@ -57,6 +57,7 @@ const BannerWrapper = styled.div`
   position: relative;
   color: rgb(0, 0, 0);
   display: flex;
+  width: 100%;
 `;
 
 const Img = styled.img`

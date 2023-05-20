@@ -1,7 +1,13 @@
-import React from "react";
+import CartContainer from "../components/CartContainer";
+import TotalContainer from "../components/TotalContainer";
 
 const Cart = () => {
-  return <div>Cart</div>;
+  return (
+    <div className="cart">
+      <CartContainer />
+      <TotalContainer />
+    </div>
+  );
 };
 
 export default Cart;

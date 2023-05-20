@@ -5,13 +5,14 @@ import ProductItem from "./ProductItem";
 import { CenterDiv } from "./styledcomponents/Component";
 
 const Product = () => {
-  const { storedata } = useContext(DataContaxt);
-
+  const {
+    state: { products },
+  } = useContext(DataContaxt);
   return (
     <CenterDiv>
       <ProductWrapper>
-        {storedata &&
-          storedata?.map((item) => {
+        {products &&
+          products?.map((item) => {
             return <ProductItem key={item.id} data={item} />;
           })}
       </ProductWrapper>
@@ -23,8 +24,8 @@ export default Product;
 
 const ProductWrapper = styled.div`
   display: grid;
-  gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
   transform: translateY(-137px);
   padding: 0 10px;
   @media (max-width: 768px) {

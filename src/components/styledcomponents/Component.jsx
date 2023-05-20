@@ -12,9 +12,15 @@ export const CenterDiv = styled.div`
 export const Heading = styled.h2`
   font-size: ${({ f }) => f};
   padding: ${({ p }) => p};
+  @media (max-width: 468px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Paragraph = styled.p`
   font-size: ${({ f }) => f};
   padding: ${({ p }) => p};
+  @media (max-width: 468px) {
+    font-size: 0.8rem;
+  }
 `;

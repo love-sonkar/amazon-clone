@@ -1,14 +1,19 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
+import ProductReducers from "../reducers/ProductReducers";
 import DataContaxt from "./DataContaxt";
+
 const DataState = ({ children }) => {
-  const [storedata, setStoreData] = useState(null);
+  const [state, dispatch] = useReducer(ProductReducers, {
+    products: [],
+    cart: [],
+  });
 
   const FetchApi = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        setStoreData(res.data);
+        dispatch({ type: "ALL_PRODUCTS", payload: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -18,8 +23,10 @@ const DataState = ({ children }) => {
     return FetchApi();
   }, []);
 
+  console.log(state);
+
   return (
-    <DataContaxt.Provider value={{ storedata, setStoreData }}>
+    <DataContaxt.Provider value={{ state, dispatch }}>
       {children}
     </DataContaxt.Provider>
   );

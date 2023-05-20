@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Price from "./Price";
 import RatingComponent from "./RatingComponent";
 import { Heading, Paragraph } from "./styledcomponents/Component";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import DataContaxt from "./hooks/DataContaxt";
 
 const ProductItem = ({ data }) => {
+  const { state, dispatch } = useContext(DataContaxt);
+
   const DescriptionCut = (string, n) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
-  };
-
-  const handleCart = (item) => {
-    console.log("hii this is", item);
   };
 
   return (
@@ -25,12 +24,23 @@ const ProductItem = ({ data }) => {
         <Price price={data?.price} />
         <RatingComponent rating={data?.rating.rate} />
         <Paragraph f=".8rem">
-          {DescriptionCut(`${data?.description}`, 150)}
+          {DescriptionCut(`${data?.description}`, 50)}
         </Paragraph>
-        <Button as={NavLink} to="/" onClick={() => handleCart(data)}>
-          <AiOutlineShoppingCart />
-          Add To Card
-        </Button>
+        {state.cart.some((i) => i.id === data.id) ? (
+          <RemoveButton
+            onClick={() => dispatch({ type: "REMOVE_TO_CART", payload: data })}
+          >
+            <AiOutlineShoppingCart />
+            Remove
+          </RemoveButton>
+        ) : (
+          <Button
+            onClick={() => dispatch({ type: "ADD_TO_CART", payload: data })}
+          >
+            <AiOutlineShoppingCart />
+            Add To Card
+          </Button>
+        )}
       </div>
     </ProductWrapper>
   );
@@ -51,7 +61,7 @@ const ProductWrapper = styled.div`
     place-items: center;
   }
   img {
-    width: 50%;
+    height: 130px;
     margin: 0 auto;
   }
 
@@ -61,6 +71,8 @@ const ProductWrapper = styled.div`
 `;
 
 const Button = styled.button`
+  width: 100%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,4 +92,9 @@ const Button = styled.button`
   svg {
     font-size: 1.875rem;
   }
+`;
+
+export const RemoveButton = styled(Button)`
+  background: red;
+  border: 1px solid red;
 `;

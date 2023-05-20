@@ -10,9 +10,13 @@ const CartContainer = () => {
   console.log(cart);
   return (
     <CartContainerWrapper>
-      {cart.map((item) => {
-        return <Cartitem key={item.id} data={item} />;
-      })}
+      {cart.length === 0 ? (
+        <h2>Cart is empty please add some product</h2>
+      ) : (
+        cart.map((item) => {
+          return <Cartitem key={item.id} data={item} />;
+        })
+      )}
     </CartContainerWrapper>
   );
 };

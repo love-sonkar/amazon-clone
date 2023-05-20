@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <NavLink to="/amazon-clone" className="logo">
+      <NavLink to="/" className="logo">
         <LogoImage
           src="https://companieslogo.com/img/orig/AMZN_BIG.D-8fb0be81.png?t=1632523695"
           alt="amazonlogo"
@@ -24,17 +24,13 @@ const Header = () => {
       <LastDivWrapper>
         <HiddenBox className="hiddnen">
           <NavigationBox
-            link="/amazon-clone"
+            link="/"
             heading="Account & Lists"
             paragraph="Hello sing in"
           />
-          <NavigationBox
-            link="/amazon-clone"
-            heading="& Orders"
-            paragraph="Returns"
-          />
+          <NavigationBox link="/" heading="& Orders" paragraph="Returns" />
         </HiddenBox>
-        <CartContainer as={NavLink} to="/amazon-clone/cart">
+        <CartContainer as={NavLink} to="/cart">
           <AiOutlineShoppingCart />
           <CartItem>{state.cart === null ? 0 : state.cart.length}</CartItem>
         </CartContainer>

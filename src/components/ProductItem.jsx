@@ -16,7 +16,7 @@ const ProductItem = ({ data }) => {
 
   return (
     <ProductWrapper>
-      <NavLink className="image" to={`/amazon-clone/overview/${data.id}`}>
+      <NavLink className="image" to={`/overview/${data.id}`}>
         <img src={data?.image} alt="" />
       </NavLink>
       <div className="content">

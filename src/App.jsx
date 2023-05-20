@@ -10,9 +10,9 @@ const App = () => {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/amazon-clone" element={<Home />} />
-        <Route path="/amazon-clone/cart" element={<Cart />} />
-        <Route path="/amazon-clone/overview/:id" element={<OverView />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/overview/:id" element={<OverView />} />
         <Route path="*" element={<Navigate to="/amazon-clone/" />} />
       </Routes>
       <Footer />

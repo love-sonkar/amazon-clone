@@ -8,17 +8,7 @@ import NavigationBox from "./NavigationBox";
 import DataContaxt from "./hooks/DataContaxt";
 
 const Header = () => {
-  const { storedata, setStoreData } = useContext(DataContaxt);
-  const [newserchdata, setNewSerchData] = useState(null);
-  const [search, setSearch] = useState("");
-
-  const searchFunc = (store) => {
-    return store.filter((data) => {
-      setNewSerchData(data.title.toLowerCase().includes(search.toLowerCase()));
-    });
-  };
-
-  console.log(newserchdata);
+  const { state, dispatch } = useContext(DataContaxt);
 
   return (
     <BackGround bgcolor="black">
@@ -31,27 +21,22 @@ const Header = () => {
             />
           </NavLink>
           <SearchBox>
-            <Input
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-              type="text"
-              name=""
-              id=""
-            />
-            <BiSearch onClick={() => searchFunc(storedata)} />
+            <Input type="text" name="" id="" />
+            <BiSearch />
           </SearchBox>
           <LastDivWrapper>
-            <NavigationBox
-              link="/"
-              heading="Account & Lists"
-              paragraph="Hello sing in"
-            />
-            <NavigationBox link="/" heading="& Orders" paragraph="Returns" />
-            <NavLink to="/cart">
+            <HiddenBox className="hiddnen">
+              <NavigationBox
+                link="/"
+                heading="Account & Lists"
+                paragraph="Hello sing in"
+              />
+              <NavigationBox link="/" heading="& Orders" paragraph="Returns" />
+            </HiddenBox>
+            <CartContainer as={NavLink} to="/cart">
               <AiOutlineShoppingCart />
-            </NavLink>
+              <CartItem>{state.cart === null ? 0 : state.cart.length}</CartItem>
+            </CartContainer>
           </LastDivWrapper>
         </HeaderWrapper>
       </CenterDiv>
@@ -107,4 +92,30 @@ const LastDivWrapper = styled.div`
   a {
     color: rgb(255, 255, 255);
   }
+`;
+
+const HiddenBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const CartContainer = styled.div`
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const CartItem = styled.span`
+  color: white;
+  background: red;
+  border-radius: 50%;
+  padding: 1px 8px;
+  position: absolute;
+  bottom: 14px;
+  right: -15px;
 `;

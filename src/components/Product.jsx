@@ -6,15 +6,19 @@ import { CenterDiv } from "./styledcomponents/Component";
 
 const Product = () => {
   const {
-    state: { products },
+    state: { search },
   } = useContext(DataContaxt);
   return (
     <CenterDiv>
       <ProductWrapper>
-        {products &&
-          products?.map((item) => {
+        {search.length === 0 ? (
+          <h2>No Products</h2>
+        ) : (
+          search &&
+          search.map((item) => {
             return <ProductItem key={item.id} data={item} />;
-          })}
+          })
+        )}
       </ProductWrapper>
     </CenterDiv>
   );

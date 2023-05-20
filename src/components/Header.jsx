@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -7,7 +7,18 @@ import NavigationBox from "./NavigationBox";
 import DataContaxt from "./hooks/DataContaxt";
 
 const Header = () => {
-  const { state } = useContext(DataContaxt);
+  const { state, dispatch } = useContext(DataContaxt);
+  const [searchtyp, setsearchtyp] = useState("");
+
+  const filterNames = (e) => {
+    setsearchtyp(e.target.value.toLowerCase());
+    const filterNames = state.products.filter((product) => {
+      return product.title.toLowerCase().includes(searchtyp);
+    });
+    dispatch({ type: "SEARCH", payload: filterNames });
+  };
+
+  const currpath = useLocation();
 
   return (
     <HeaderWrapper>
@@ -17,10 +28,20 @@ const Header = () => {
           alt="amazonlogo"
         />
       </NavLink>
-      <SearchBox>
-        <Input type="text" name="" id="" />
-        <BiSearch />
-      </SearchBox>
+      {currpath.pathname !== "/cart" && (
+        <SearchBox>
+          <Input
+            value={searchtyp}
+            onChange={(e) => {
+              filterNames(e);
+            }}
+            type="text"
+            name=""
+            id=""
+          />
+          <BiSearch />
+        </SearchBox>
+      )}
       <LastDivWrapper>
         <HiddenBox className="hiddnen">
           <NavigationBox

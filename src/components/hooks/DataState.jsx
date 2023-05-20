@@ -7,6 +7,7 @@ const DataState = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducers, {
     products: [],
     cart: [],
+    search: [],
   });
 
   const FetchApi = () => {
@@ -14,6 +15,7 @@ const DataState = ({ children }) => {
       .get("https://fakestoreapi.com/products")
       .then((res) => {
         dispatch({ type: "ALL_PRODUCTS", payload: res.data });
+        dispatch({ type: "SEARCH", payload: res.data });
       })
       .catch((err) => {
         console.log(err);

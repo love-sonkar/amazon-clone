@@ -2,6 +2,8 @@ const ProductReducers = (state, action) => {
   switch (action.type) {
     case "ALL_PRODUCTS":
       return { ...state, products: action.payload };
+    case "SEARCH":
+      return { ...state, search: action.payload };
     case "ADD_TO_CART":
       return {
         ...state,

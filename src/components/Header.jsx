@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { CenterDiv, BackGround } from "./styledcomponents/Component";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
@@ -8,43 +7,39 @@ import NavigationBox from "./NavigationBox";
 import DataContaxt from "./hooks/DataContaxt";
 
 const Header = () => {
-  const { state, dispatch } = useContext(DataContaxt);
+  const { state } = useContext(DataContaxt);
 
   return (
-    <BackGround bgcolor="black">
-      <CenterDiv>
-        <HeaderWrapper>
-          <NavLink to="/amazon-clone" className="logo">
-            <LogoImage
-              src="https://companieslogo.com/img/orig/AMZN_BIG.D-8fb0be81.png?t=1632523695"
-              alt="amazonlogo"
-            />
-          </NavLink>
-          <SearchBox>
-            <Input type="text" name="" id="" />
-            <BiSearch />
-          </SearchBox>
-          <LastDivWrapper>
-            <HiddenBox className="hiddnen">
-              <NavigationBox
-                link="/amazon-clone"
-                heading="Account & Lists"
-                paragraph="Hello sing in"
-              />
-              <NavigationBox
-                link="/amazon-clone"
-                heading="& Orders"
-                paragraph="Returns"
-              />
-            </HiddenBox>
-            <CartContainer as={NavLink} to="/amazon-clone/cart">
-              <AiOutlineShoppingCart />
-              <CartItem>{state.cart === null ? 0 : state.cart.length}</CartItem>
-            </CartContainer>
-          </LastDivWrapper>
-        </HeaderWrapper>
-      </CenterDiv>
-    </BackGround>
+    <HeaderWrapper>
+      <NavLink to="/amazon-clone" className="logo">
+        <LogoImage
+          src="https://companieslogo.com/img/orig/AMZN_BIG.D-8fb0be81.png?t=1632523695"
+          alt="amazonlogo"
+        />
+      </NavLink>
+      <SearchBox>
+        <Input type="text" name="" id="" />
+        <BiSearch />
+      </SearchBox>
+      <LastDivWrapper>
+        <HiddenBox className="hiddnen">
+          <NavigationBox
+            link="/amazon-clone"
+            heading="Account & Lists"
+            paragraph="Hello sing in"
+          />
+          <NavigationBox
+            link="/amazon-clone"
+            heading="& Orders"
+            paragraph="Returns"
+          />
+        </HiddenBox>
+        <CartContainer as={NavLink} to="/amazon-clone/cart">
+          <AiOutlineShoppingCart />
+          <CartItem>{state.cart === null ? 0 : state.cart.length}</CartItem>
+        </CartContainer>
+      </LastDivWrapper>
+    </HeaderWrapper>
   );
 };
 
@@ -58,6 +53,16 @@ const HeaderWrapper = styled.div`
   padding: 10px 20px;
   color: rgb(255, 255, 255);
   justify-content: space-between;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const LogoImage = styled.img`
@@ -77,6 +82,12 @@ const SearchBox = styled.div`
     padding: 6px 10px;
     border-radius: 0 5px 5px 0;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    grid-row: 2/3;
+    grid-column: -3/3;
+  }
 `;
 
 const Input = styled.input`
@@ -92,9 +103,13 @@ const LastDivWrapper = styled.div`
   gap: 1rem;
   svg {
     font-size: 1.8rem;
+    color: black;
   }
   a {
     color: rgb(255, 255, 255);
+  }
+  @media (max-width: 768px) {
+    justify-content: end;
   }
 `;
 
@@ -112,14 +127,20 @@ const CartContainer = styled.div`
   position: relative;
   display: flex;
   gap: 0.5rem;
+  padding: 12px;
+  background: white;
+  border-radius: 50px;
+  @media (max-width: 768px) {
+    justify-content: end;
+  }
 `;
 
 const CartItem = styled.span`
-  color: white;
-  background: red;
+  color: #000000;
+  background: #f3a847;
   border-radius: 50%;
   padding: 1px 8px;
   position: absolute;
-  bottom: 14px;
-  right: -15px;
+  bottom: 32px;
+  right: -7px;
 `;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { CenterDiv } from "./styledcomponents/Component";
 
 const BannerContent = () => {
@@ -38,20 +39,12 @@ const BannerContent = () => {
 
   return (
     <BannerWrapper>
-      <Arrow
-        onClick={handleLeftArrow}
-        left="10px"
-        className="material-symbols-outlined"
-      >
-        chevron_left
+      <Arrow onClick={handleLeftArrow} left="10px">
+        <AiOutlineLeft />
       </Arrow>
       <Img src={ImageData[imageId]?.image} alt="../../public/screen.jpg" />
-      <Arrow
-        onClick={handleRightArrow}
-        right="10px"
-        className="material-symbols-outlined"
-      >
-        chevron_right
+      <Arrow onClick={handleRightArrow} right="10px">
+        <AiOutlineRight />
       </Arrow>
       <Gradient />
     </BannerWrapper>
@@ -84,6 +77,10 @@ const Arrow = styled.span`
   transition: all 0.2s ease-in;
   &:hover {
     color: #f3a847;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
   }
 `;
 

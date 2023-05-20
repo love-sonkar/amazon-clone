@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import DataContaxt from "./hooks/DataContaxt";
 import Price from "./Price";
@@ -9,9 +9,19 @@ import { MdDelete } from "react-icons/md";
 
 const Cartitem = ({ data }) => {
   const { dispatch } = useContext(DataContaxt);
+  const [ChangePrice, setChangePrice] = useState(1);
 
   const DescriptionCut = (string, n) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
+  };
+
+  const handleclick = () => {
+    setChangePrice(() => ChangePrice + 1);
+  };
+  const handleclickMinus = () => {
+    {
+      ChangePrice === 1 ? "" : setChangePrice(() => ChangePrice - 1);
+    }
   };
 
   return (
@@ -30,9 +40,9 @@ const Cartitem = ({ data }) => {
             {DescriptionCut(`${data?.description}`, 50)}
           </Paragraph>
           <QtyWrapper>
-            <BiPlus />
-            <p>{data.qty}</p>
-            <BiMinus />
+            {ChangePrice !== 1 && <BiMinus onClick={handleclickMinus} />}
+            <p>{ChangePrice}</p>
+            <BiPlus onClick={handleclick} />
           </QtyWrapper>
         </div>
         <MdDelete
@@ -55,6 +65,7 @@ const CartWrapper = styled.div`
   margin-bottom: 10px;
   padding: 10px 10px;
   background: #ffffff;
+  border-radius: 5px;
   img {
     height: 80px;
     width: 80px;

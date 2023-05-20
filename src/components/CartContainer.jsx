@@ -7,7 +7,7 @@ const CartContainer = () => {
   const {
     state: { cart },
   } = useContext(DataContaxt);
-  console.log(cart);
+
   return (
     <CartContainerWrapper>
       {cart.length === 0 ? (

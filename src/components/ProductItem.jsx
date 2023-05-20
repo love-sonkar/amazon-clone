@@ -16,9 +16,9 @@ const ProductItem = ({ data }) => {
 
   return (
     <ProductWrapper>
-      <div className="image">
+      <NavLink className="image" to={`/amazon-clone/overview/${data.id}`}>
         <img src={data?.image} alt="" />
-      </div>
+      </NavLink>
       <div className="content">
         <Heading f="1.1rem">{data?.title}</Heading>
         <Price price={data?.price} />
@@ -62,6 +62,7 @@ const ProductWrapper = styled.div`
     place-items: center;
   }
   img {
+    cursor: pointer;
     height: 130px;
     margin: 0 auto;
   }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Price = ({ price }) => {
   return (
     <PriceWrapper style={{ color: "black" }}>
-      ₹<Rate>{Math.floor(price * 72)}.00 </Rate>
+      ₹<Rate>{Number(Math.floor(price * 72))}.00 </Rate>
     </PriceWrapper>
   );
 };

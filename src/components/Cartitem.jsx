@@ -6,30 +6,24 @@ import RatingComponent from "./RatingComponent";
 import { Heading, Paragraph } from "./styledcomponents/Component";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const Cartitem = ({ data }) => {
-  const { dispatch } = useContext(DataContaxt);
-  const [ChangePrice, setChangePrice] = useState(1);
+  const {
+    state: { cart },
+    dispatch,
+  } = useContext(DataContaxt);
 
   const DescriptionCut = (string, n) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
   };
 
-  const handleclick = () => {
-    setChangePrice(() => ChangePrice + 1);
-  };
-  const handleclickMinus = () => {
-    {
-      ChangePrice === 1 ? "" : setChangePrice(() => ChangePrice - 1);
-    }
-  };
-
   return (
     <>
       <CartWrapper>
-        <div className="image">
+        <NavLink className="image" to={`/amazon-clone/overview/${data.id}`}>
           <img src={data?.image} alt="" />
-        </div>
+        </NavLink>
         <div className="content">
           <Heading className="heading" f="1.1rem">
             {data?.title}
@@ -39,11 +33,11 @@ const Cartitem = ({ data }) => {
           <Paragraph className="hide" f=".8rem">
             {DescriptionCut(`${data?.description}`, 50)}
           </Paragraph>
-          <QtyWrapper>
-            {ChangePrice !== 1 && <BiMinus onClick={handleclickMinus} />}
-            <p>{ChangePrice}</p>
-            <BiPlus onClick={handleclick} />
-          </QtyWrapper>
+          {/* <QtyWrapper>
+            <BiMinus />
+            <p>{data.qty}</p>
+            <BiPlus />
+          </QtyWrapper> */}
         </div>
         <MdDelete
           onClick={() => dispatch({ type: "REMOVE_TO_CART", payload: data })}

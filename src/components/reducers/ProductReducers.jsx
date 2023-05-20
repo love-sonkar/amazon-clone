@@ -12,6 +12,15 @@ const ProductReducers = (state, action) => {
         ...state,
         cart: state.cart.filter((i) => i.id !== action.payload.id),
       };
+    case "CHANGE_QTY":
+      return {
+        ...state,
+        cart: state.cart.filter((i) => {
+          return i.id === action.payload.id
+            ? (i.qty = action.payload.qty)
+            : i.qty;
+        }),
+      };
   }
   return { ...state };
 };

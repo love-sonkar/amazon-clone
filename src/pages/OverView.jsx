@@ -35,4 +35,5 @@ const OverviewWrapper = styled.div`
   padding: 20px;
   height: 78vh;
   width: 100%;
+  display: grid;
 `;

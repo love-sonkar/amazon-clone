@@ -14,7 +14,7 @@ const Header = () => {
     <BackGround bgcolor="black">
       <CenterDiv>
         <HeaderWrapper>
-          <NavLink to="/" className="logo">
+          <NavLink to="/amazon-clone" className="logo">
             <LogoImage
               src="https://companieslogo.com/img/orig/AMZN_BIG.D-8fb0be81.png?t=1632523695"
               alt="amazonlogo"
@@ -27,13 +27,17 @@ const Header = () => {
           <LastDivWrapper>
             <HiddenBox className="hiddnen">
               <NavigationBox
-                link="/"
+                link="/amazon-clone"
                 heading="Account & Lists"
                 paragraph="Hello sing in"
               />
-              <NavigationBox link="/" heading="& Orders" paragraph="Returns" />
+              <NavigationBox
+                link="/amazon-clone"
+                heading="& Orders"
+                paragraph="Returns"
+              />
             </HiddenBox>
-            <CartContainer as={NavLink} to="/cart">
+            <CartContainer as={NavLink} to="/amazon-clone/cart">
               <AiOutlineShoppingCart />
               <CartItem>{state.cart === null ? 0 : state.cart.length}</CartItem>
             </CartContainer>

@@ -24,17 +24,9 @@ const ProductItem = ({ data }) => {
         <Price price={data?.price} />
         <RatingComponent rating={data?.rating.rate} />
         <Paragraph f=".8rem">
-<<<<<<< HEAD
           {DescriptionCut(`${data?.description}`, 80)}
         </Paragraph>
 
-        <Button as={NavLink}>
-          <AiOutlineShoppingCart />
-          Add To Card
-        </Button>
-=======
-          {DescriptionCut(`${data?.description}`, 50)}
-        </Paragraph>
         {state.cart.some((i) => i.id === data.id) ? (
           <RemoveButton
             onClick={() => dispatch({ type: "REMOVE_TO_CART", payload: data })}
@@ -50,7 +42,6 @@ const ProductItem = ({ data }) => {
             Add To Card
           </Button>
         )}
->>>>>>> cartfeature2.0
       </div>
     </ProductWrapper>
   );

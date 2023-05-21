@@ -15,7 +15,7 @@ export default Cart;
 
 const CartWrapper = styled.div`
   display: flex;
-  min-height: 90vh;
+  min-height: 80vh;
   flex-direction: column;
   justify-content: space-between;
 `;

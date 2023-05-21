@@ -11,7 +11,7 @@ const CartContainer = () => {
   return (
     <CartContainerWrapper>
       {cart.length === 0 ? (
-        <h2>Cart is empty please add some product</h2>
+        <EmptyCart>Cart is empty please add some product</EmptyCart>
       ) : (
         cart.map((item) => {
           return <Cartitem key={item.id} data={item} />;
@@ -25,4 +25,13 @@ export default CartContainer;
 
 const CartContainerWrapper = styled.div`
   padding: 20px;
+`;
+
+const EmptyCart = styled.h2`
+  text-align: center;
+  padding: 10px;
+  background: #f3a847;
+  font-weight: 500;
+  color: white;
+  border-radius: 5px;
 `;

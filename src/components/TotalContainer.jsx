@@ -49,7 +49,7 @@ const Content = styled.div`
     font-size: 1rem;
   }
   p {
-    font-size: 1.3rem;
+    font-size: 2rem;
     border-bottom: 2px solid #f3a847;
   }
 `;

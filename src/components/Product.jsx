@@ -12,7 +12,7 @@ const Product = () => {
     <CenterDiv>
       <ProductWrapper>
         {search.length === 0 ? (
-          <h2>No Products</h2>
+          <NoProducts>No Products</NoProducts>
         ) : (
           search &&
           search.map((item) => {
@@ -38,4 +38,13 @@ const ProductWrapper = styled.div`
   @media (max-width: 468px) {
     transform: translateY(-20px);
   }
+`;
+
+const NoProducts = styled.h2`
+  text-align: center;
+  padding: 10px;
+  background: #f3a847;
+  font-weight: 500;
+  color: white;
+  border-radius: 5px;
 `;

@@ -1,13 +1,21 @@
+import styled from "styled-components";
 import CartContainer from "../components/CartContainer";
 import TotalContainer from "../components/TotalContainer";
 
 const Cart = () => {
   return (
-    <div className="cart">
+    <CartWrapper className="cart">
       <CartContainer />
       <TotalContainer />
-    </div>
+    </CartWrapper>
   );
 };
 
 export default Cart;
+
+const CartWrapper = styled.div`
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+  justify-content: space-between;
+`;

@@ -38,7 +38,6 @@ const BannerContent = () => {
   return (
     <BannerWrapper>
       <Img src={ImageData[imageId]?.image} alt="../../public/screen.jpg" />
-
       <Gradient />
     </BannerWrapper>
   );
@@ -55,27 +54,6 @@ const BannerWrapper = styled.div`
 
 const Img = styled.img`
   margin: 0 auto;
-`;
-
-const Arrow = styled.span`
-  position: absolute;
-  cursor: pointer;
-  font-size: 3.5rem;
-  display: grid;
-  place-content: center;
-  height: 50%;
-  right: ${({ right }) => right};
-  left: ${({ left }) => left};
-  user-select: none;
-  color: white;
-  transition: all 0.2s ease-in;
-  &:hover {
-    color: #f3a847;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
 `;
 
 const Gradient = styled.div`

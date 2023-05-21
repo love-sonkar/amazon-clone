@@ -38,6 +38,7 @@ const Header = () => {
             type="text"
             name=""
             id=""
+            placeholder="Search..."
           />
           <BiSearch />
         </SearchBox>

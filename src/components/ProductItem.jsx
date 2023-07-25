@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Price from "./Price";
 import RatingComponent from "./RatingComponent";
 import { Heading, Paragraph } from "./styledcomponents/Component";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import DataContaxt from "./hooks/DataContaxt";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ProductItem = ({ data }) => {
   const { state, dispatch } = useContext(DataContaxt);
+  const currentpath = useLocation();
 
   const DescriptionCut = (string, n) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
@@ -17,17 +19,19 @@ const ProductItem = ({ data }) => {
   return (
     <ProductWrapper>
       <NavLink className="image" to={`/overview/${data.id}`}>
-        <img src={data?.image} alt="" />
+        <LazyLoadImage alt={data?.image} effect="blur" src={data?.image} />
       </NavLink>
       <div className="content">
         <Heading f="1.1rem">{data?.title}</Heading>
         <Price price={data?.price} />
         <RatingComponent rating={data?.rating.rate} />
         <Paragraph f=".8rem">
-          {DescriptionCut(`${data?.description}`, 80)}
+          {currentpath.pathname === `/overview/${data.id}`
+            ? data?.description
+            : DescriptionCut(`${data?.description}`, 80)}
         </Paragraph>
 
-        {state.cart.some((i) => i.id === data.id) ? (
+        {state.cart?.some((i) => i.id === data.id) ? (
           <RemoveButton
             onClick={() => dispatch({ type: "REMOVE_TO_CART", payload: data })}
           >

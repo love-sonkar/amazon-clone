@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const BannerContent = () => {
   const [imageId, setImageId] = useState(0);
@@ -37,7 +38,11 @@ const BannerContent = () => {
 
   return (
     <BannerWrapper>
-      <Img src={ImageData[imageId]?.image} alt="../../public/screen.jpg" />
+      <LazyLoadImage
+        src={ImageData[imageId]?.image}
+        alt="/public/screen.jpg"
+        effect="blur"
+      />
       <Gradient />
     </BannerWrapper>
   );
@@ -50,10 +55,9 @@ const BannerWrapper = styled.div`
   color: rgb(0, 0, 0);
   display: flex;
   width: 100%;
-`;
-
-const Img = styled.img`
-  margin: 0 auto;
+  img {
+    margin: 0 auto;
+  }
 `;
 
 const Gradient = styled.div`

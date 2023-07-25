@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
 import OverView from "./pages/OverView";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const App = () => {
   return (

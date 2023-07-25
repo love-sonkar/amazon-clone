@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
@@ -13,7 +13,7 @@ const Header = () => {
     filterdispatch,
   } = useContext(DataContaxt);
 
-  const currpath = useLocation();
+  const currentpath = useLocation();
 
   return (
     <HeaderWrapper>
@@ -23,7 +23,7 @@ const Header = () => {
           alt="amazonlogo"
         />
       </NavLink>
-      {currpath.pathname !== "/cart" && (
+      {currentpath.pathname == "/" && (
         <SearchBox>
           <Input
             value={searchquery}

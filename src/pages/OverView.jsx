@@ -33,7 +33,7 @@ export default OverView;
 
 const OverviewWrapper = styled.div`
   padding: 20px;
-  height: 78vh;
+  height: auto;
   width: 100%;
   display: grid;
 `;

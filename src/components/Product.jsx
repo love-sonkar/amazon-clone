@@ -6,16 +6,28 @@ import { CenterDiv } from "./styledcomponents/Component";
 
 const Product = () => {
   const {
-    state: { search },
+    state: { products },
+    filterstate: { searchquery },
   } = useContext(DataContaxt);
+
+  const filterProducts = () => {
+    let filterproductsitem = products;
+    if (searchquery !== "") {
+      filterproductsitem = filterproductsitem.filter((item) =>
+        item.title.toLowerCase().includes(searchquery)
+      );
+    }
+    return filterproductsitem;
+  };
+
   return (
     <CenterDiv>
       <ProductWrapper>
-        {search.length === 0 ? (
+        {filterProducts().length === 0 ? (
           <NoProducts>No Products</NoProducts>
         ) : (
-          search &&
-          search.map((item) => {
+          filterProducts() &&
+          filterProducts().map((item) => {
             return <ProductItem key={item.id} data={item} />;
           })
         )}

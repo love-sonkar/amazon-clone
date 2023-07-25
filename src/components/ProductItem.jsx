@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Price from "./Price";
@@ -63,8 +63,10 @@ const ProductWrapper = styled.div`
   }
   img {
     cursor: pointer;
-    height: 130px;
     margin: 0 auto;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
   }
 
   .content {

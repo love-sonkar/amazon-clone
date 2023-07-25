@@ -1,13 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useReducer } from "react";
-import ProductReducers from "../reducers/ProductReducers";
+import ProductReducers, { FilterProducts } from "../reducers/ProductReducers";
 import DataContaxt from "./DataContaxt";
 
 const DataState = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducers, {
     products: [],
     cart: [],
-    search: [],
+  });
+
+  const [filterstate, filterdispatch] = useReducer(FilterProducts, {
+    searchquery: "",
   });
 
   const FetchApi = () => {
@@ -25,10 +28,10 @@ const DataState = ({ children }) => {
     return FetchApi();
   }, []);
 
-  console.log(state);
-
   return (
-    <DataContaxt.Provider value={{ state, dispatch }}>
+    <DataContaxt.Provider
+      value={{ state, dispatch, filterstate, filterdispatch }}
+    >
       {children}
     </DataContaxt.Provider>
   );

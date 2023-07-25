@@ -7,16 +7,11 @@ import NavigationBox from "./NavigationBox";
 import DataContaxt from "./hooks/DataContaxt";
 
 const Header = () => {
-  const { state, dispatch } = useContext(DataContaxt);
-  const [searchtyp, setsearchtyp] = useState("");
-
-  const filterNames = (e) => {
-    setsearchtyp(e.target.value.toLowerCase());
-    const filterNames = state.products.filter((product) => {
-      return product.title.toLowerCase().includes(searchtyp);
-    });
-    dispatch({ type: "SEARCH", payload: filterNames });
-  };
+  const {
+    state: { cart },
+    filterstate: { searchquery },
+    filterdispatch,
+  } = useContext(DataContaxt);
 
   const currpath = useLocation();
 
@@ -31,13 +26,14 @@ const Header = () => {
       {currpath.pathname !== "/cart" && (
         <SearchBox>
           <Input
-            value={searchtyp}
+            value={searchquery}
             onChange={(e) => {
-              filterNames(e);
+              filterdispatch({
+                type: "SEARCHQUERY",
+                payload: e.target.value.toLowerCase(),
+              });
             }}
             type="text"
-            name=""
-            id=""
             placeholder="Search..."
           />
           <BiSearch />
@@ -54,7 +50,7 @@ const Header = () => {
         </HiddenBox>
         <CartContainer as={NavLink} to="/cart">
           <AiOutlineShoppingCart />
-          <CartItem>{state.cart === null ? 0 : state.cart.length}</CartItem>
+          <CartItem>{cart === null ? 0 : cart.length}</CartItem>
         </CartContainer>
       </LastDivWrapper>
     </HeaderWrapper>

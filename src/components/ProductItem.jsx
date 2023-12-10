@@ -60,6 +60,7 @@ const ProductWrapper = styled.div`
   gap: 1rem;
   padding: 10px;
   flex-direction: column;
+  max-width: 320px;
   .image {
     height: 100%;
     display: grid;
@@ -72,7 +73,6 @@ const ProductWrapper = styled.div`
     aspect-ratio: 16/9;
     object-fit: contain;
   }
-
   .content {
     justify-content: flex-end;
   }

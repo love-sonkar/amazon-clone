@@ -11,7 +11,7 @@ const TotalContainer = () => {
 
   useEffect(() => {
     setTotalPrice(
-      cart.reduce((acc, curr) => acc + Number(Math.floor(curr.price * 72)), 0)
+      cart.reduce((acc, curr) => acc + Number(Math.floor(curr.price * 72) * curr.qty), 0)
     );
   }, [cart]);
 

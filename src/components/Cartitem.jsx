@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import DataContaxt from "./hooks/DataContaxt";
 import Price from "./Price";
@@ -94,15 +94,16 @@ const QtyWrapper = styled.div`
   justify-content: space-evenly;
   border: 1px solid #f3a847;
   svg {
-    height: 26px;
+    height: 27px;
     font-size: 3rem;
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: rgb(255,255,255);
     background: #f3a847;
     padding: 6px 10px;
   }
   p {
     width: 100%;
     text-align: center;
+    user-select:none;
   }
 `;

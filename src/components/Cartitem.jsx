@@ -17,7 +17,7 @@ const Cartitem = ({ data }) => {
   const DescriptionCut = (string, n) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
   };
-
+console.log(cart)
   return (
     <>
       <CartWrapper>
@@ -33,11 +33,11 @@ const Cartitem = ({ data }) => {
           <Paragraph className="hide" f=".8rem">
             {DescriptionCut(`${data?.description}`, 50)}
           </Paragraph>
-          {/* <QtyWrapper>
-            <BiMinus />
+          <QtyWrapper>
+            <BiMinus onClick={()=>dispatch({type:"CHANGE_QTY",payload:data.qty--})} />
             <p>{data.qty}</p>
-            <BiPlus />
-          </QtyWrapper> */}
+          <BiPlus onClick={()=>dispatch({type:"CHANGE_QTY",payload:data.qty++})}/>
+          </QtyWrapper>
         </div>
         <MdDelete
           onClick={() => dispatch({ type: "REMOVE_TO_CART", payload: data })}

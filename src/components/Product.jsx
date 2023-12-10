@@ -10,8 +10,6 @@ const Product = () => {
     filterstate: { searchquery },
   } = useContext(DataContaxt);
 
-  console.log(products);
-
   const filterProducts = () => {
     let filterproductsitem = products;
     if (searchquery !== "") {

@@ -88,7 +88,7 @@ const SearchBox = styled.div`
   display: flex;
   align-items: center;
   svg {
-    height: 36px;
+    height: 39px;
     font-size: 3rem;
     cursor: pointer;
     color: rgb(0, 0, 0);

@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Footer = () => {
-  return <FooterWrapper>Love Sonkar &copy; 2023-2024</FooterWrapper>;
+  const year = new Date().getFullYear()
+  return <FooterWrapper>Love Sonkar &copy; 2023-{year}</FooterWrapper>;
 };
 
 export default Footer;

@@ -36,4 +36,5 @@ const OverviewWrapper = styled.div`
   height: auto;
   width: 100%;
   display: grid;
+  place-content:center;
 `;

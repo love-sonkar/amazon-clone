@@ -10,14 +10,13 @@ import { NavLink } from "react-router-dom";
 
 const Cartitem = ({ data }) => {
   const {
-    state: { cart },
     dispatch,
   } = useContext(DataContaxt);
 
   const DescriptionCut = (string, n) => {
     return string.length > n ? string.substr(0, n - 1) + "..." : string;
   };
-console.log(cart)
+
   return (
     <>
       <CartWrapper>
@@ -34,9 +33,21 @@ console.log(cart)
             {DescriptionCut(`${data?.description}`, 50)}
           </Paragraph>
           <QtyWrapper>
-            <BiMinus onClick={()=>dispatch({type:"CHANGE_QTY",payload:data.qty--})} />
+            {data?.qty == 1 ? (
+              <MdDelete onClick={() => dispatch({ type: "REMOVE_TO_CART", payload: data })} />
+            ) : (
+              <BiMinus
+                onClick={() =>
+                  dispatch({ type: "CHANGE_QTY", payload: data.qty-- })
+                }
+              />
+            )}
             <p>{data.qty}</p>
-          <BiPlus onClick={()=>dispatch({type:"CHANGE_QTY",payload:data.qty++})}/>
+            <BiPlus
+              onClick={() =>
+                dispatch({ type: "CHANGE_QTY", payload: data.qty++ })
+              }
+            />
           </QtyWrapper>
         </div>
         <MdDelete
@@ -97,13 +108,13 @@ const QtyWrapper = styled.div`
     height: 27px;
     font-size: 3rem;
     cursor: pointer;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     background: #f3a847;
     padding: 6px 10px;
   }
   p {
     width: 100%;
     text-align: center;
-    user-select:none;
+    user-select: none;
   }
 `;
